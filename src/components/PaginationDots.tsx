@@ -15,6 +15,7 @@ export default function PaginationDots({ areas, currentAreaId, onSelect }: Pagin
           type="button"
           aria-label={`切换到${area.name}`}
           className={area.id === currentAreaId ? 'active' : ''}
+          data-area-id={area.id}
           onClick={() => onSelect(area.id)}
         />
       ))}

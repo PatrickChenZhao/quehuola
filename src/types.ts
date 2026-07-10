@@ -1,25 +1,25 @@
 export type AreaId = 'front' | 'prep' | 'freezer';
 
-export type MaterialShape =
-  | 'cup'
-  | 'straw'
-  | 'lid'
-  | 'paper'
-  | 'bag'
-  | 'sleeve'
-  | 'carrier'
-  | 'thermal'
-  | 'drawer'
+export type MaterialVisualType =
+  | 'cup-stack'
+  | 'straw-bundle'
+  | 'lid-stack'
+  | 'napkin-pack'
+  | 'bag-stack'
+  | 'sleeve-stack'
+  | 'carrier-stack'
+  | 'thermal-pack'
+  | 'drawer-bin'
   | 'tea-bag'
   | 'can'
-  | 'powder'
-  | 'box'
-  | 'packet'
+  | 'jar'
+  | 'powder-bag'
+  | 'box-pack'
+  | 'packet-pack'
   | 'bottle'
   | 'fruit'
   | 'dairy'
-  | 'frozen'
-  | 'jar';
+  | 'frozen-box';
 
 export interface Area {
   id: AreaId;
@@ -27,12 +27,19 @@ export interface Area {
   title: string;
 }
 
-export interface MaterialLayout {
+export interface SceneMaterialLayout {
   x: number;
   y: number;
-  w: number;
-  h: number;
-  label?: 'top' | 'bottom' | 'left' | 'right';
+  width: number;
+  height: number;
+  labelX: number;
+  labelY: number;
+  zIndex?: number;
+  visualType: MaterialVisualType;
+  imageSrc?: string;
+  imageFit?: 'contain' | 'cover';
+  variant?: string;
+  rotation?: number;
 }
 
 export interface MaterialItem {
@@ -40,7 +47,5 @@ export interface MaterialItem {
   name: string;
   area: AreaId;
   displayOrder: number;
-  layout: MaterialLayout;
-  shape: MaterialShape;
   category?: string;
 }

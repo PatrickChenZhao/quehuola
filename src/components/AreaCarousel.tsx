@@ -1,9 +1,9 @@
 import { useRef, type TouchEvent } from 'react';
 import { AREAS } from '../data/materials';
 import type { AreaId } from '../types';
-import FreezerAreaScene from './scenes/FreezerAreaScene';
-import FrontCounterScene from './scenes/FrontCounterScene';
-import PrepAreaScene from './scenes/PrepAreaScene';
+import FreezerAreaScene from './FreezerAreaScene';
+import FrontCounterScene from './FrontCounterScene';
+import PrepAreaScene from './PrepAreaScene';
 
 interface AreaCarouselProps {
   currentIndex: number;

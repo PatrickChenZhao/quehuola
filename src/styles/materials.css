@@ -1,0 +1,569 @@
+.scene-material {
+  position: absolute;
+  pointer-events: none;
+  transform-origin: center bottom;
+}
+
+.material-object-inner {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  transition:
+    transform 190ms ease,
+    filter 190ms ease,
+    box-shadow 190ms ease,
+    outline-color 190ms ease;
+}
+
+.material-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  filter: drop-shadow(0 9px 9px rgba(31, 44, 50, 0.24));
+}
+
+.material-ground-shadow {
+  position: absolute;
+  right: 14%;
+  bottom: -2%;
+  left: 14%;
+  height: 14%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(22, 30, 34, 0.22), transparent 70%);
+  filter: blur(2px);
+}
+
+.material-selected .material-object-inner {
+  outline: 2px solid rgba(239, 68, 68, 0.9);
+  box-shadow:
+    0 0 0 4px rgba(239, 68, 68, 0.12),
+    0 10px 24px rgba(0, 0, 0, 0.14);
+  filter: brightness(1.06);
+  transform: scale(1.04);
+}
+
+.material-id-freezer-mango-pulp.material-selected .material-object-inner,
+.material-id-freezer-coconut-milk.material-selected .material-object-inner,
+.material-id-freezer-grape-juice.material-selected .material-object-inner,
+.material-id-freezer-green-grape-juice.material-selected .material-object-inner {
+  outline: 0;
+  box-shadow: none;
+}
+
+.material-id-freezer-mango-pulp.material-selected .material-object-inner::after,
+.material-id-freezer-coconut-milk.material-selected .material-object-inner::after,
+.material-id-freezer-grape-juice.material-selected .material-object-inner::after,
+.material-id-freezer-green-grape-juice.material-selected .material-object-inner::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -100%;
+  left: -2px;
+  border: 2px solid rgba(239, 68, 68, 0.9);
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 4px rgba(239, 68, 68, 0.12),
+    0 10px 24px rgba(0, 0, 0, 0.14);
+  pointer-events: none;
+}
+
+.material-hotspot {
+  position: absolute;
+  min-width: 44px;
+  min-height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.material-hotspot:focus-visible {
+  outline: 3px solid rgba(40, 168, 224, 0.86);
+  outline-offset: 3px;
+}
+
+.material-label {
+  position: absolute;
+  max-width: 118px;
+  padding: 3px 7px;
+  border: 1px solid rgba(154, 107, 62, 0.16);
+  border-radius: 999px;
+  background: #f6e6d0;
+  box-shadow:
+    0 5px 12px rgba(78, 52, 26, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.62);
+  color: #5b3a1e;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.12;
+  text-align: center;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.material-label.is-selected {
+  color: #b52824;
+  background: #f7dfc6;
+  transform: translate(-50%, -50%) scale(1.03);
+}
+
+.material-fallback {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(94, 76, 57, 0.18);
+  border-radius: 14px;
+  background: linear-gradient(145deg, #fff, #ead5b9);
+  box-shadow:
+    0 8px 16px rgba(36, 48, 54, 0.18),
+    inset 0 2px 4px rgba(255, 255, 255, 0.86);
+}
+
+.material-shine {
+  position: absolute;
+  top: 10%;
+  left: 16%;
+  width: 28%;
+  height: 70%;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.46);
+  transform: rotate(12deg);
+}
+
+.visual-straw-bundle .material-fallback {
+  width: 84%;
+  border-radius: 13px 13px 10px 10px;
+  background:
+    repeating-linear-gradient(90deg, #f7fdff 0 5px, #74c7f0 5px 7px, #f7fdff 7px 11px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(185, 220, 235, 0.22));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.62),
+    0 8px 14px rgba(23, 54, 67, 0.16);
+}
+
+.visual-straw-bundle.variant-thin .material-fallback {
+  background:
+    repeating-linear-gradient(90deg, #fbfeff 0 4px, #9bd8f3 4px 5px, #fbfeff 5px 9px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(185, 220, 235, 0.2));
+}
+
+.visual-straw-bundle .material-fallback::before,
+.visual-straw-bundle .material-fallback::after {
+  content: "";
+  position: absolute;
+  right: 8%;
+  left: 8%;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 1px 4px rgba(42, 76, 88, 0.14);
+}
+
+.visual-straw-bundle .material-fallback::before {
+  top: 5%;
+}
+
+.visual-straw-bundle .material-fallback::after {
+  bottom: 5%;
+}
+
+.visual-cup-stack .material-fallback {
+  clip-path: polygon(16% 0, 84% 0, 72% 100%, 28% 100%);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 9px, rgba(143, 172, 184, 0.18) 9px 11px),
+    linear-gradient(180deg, #ffffff 0%, #eaf8ff 54%, #c6e4f0 100%);
+}
+
+.visual-lid-stack .material-fallback {
+  height: 70%;
+  align-self: end;
+  border-radius: 50% / 20%;
+  background:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.42) 0 6px, rgba(154, 174, 182, 0.15) 6px 8px),
+    linear-gradient(180deg, #ffffff, #dcebf0);
+}
+
+.visual-napkin-pack .material-fallback {
+  border-radius: 8px;
+  background:
+    repeating-linear-gradient(0deg, rgba(180, 190, 193, 0.18) 0 1px, transparent 1px 7px),
+    linear-gradient(135deg, #ffffff, #eef5f6);
+}
+
+.visual-napkin-pack .material-fallback::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border: 1px dashed rgba(166, 172, 174, 0.52);
+  border-radius: 6px;
+}
+
+.visual-bag-stack .material-fallback {
+  border-radius: 7px 7px 14px 14px;
+  background: linear-gradient(180deg, #fffdf8, #f1dec3 70%, #dfbf96);
+}
+
+.visual-bag-stack .material-fallback::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  right: 25%;
+  left: 25%;
+  height: 23%;
+  border: 2px solid rgba(111, 83, 55, 0.32);
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+}
+
+.visual-sleeve-stack .material-fallback,
+.visual-carrier-stack .material-fallback {
+  border-radius: 9px;
+  background:
+    repeating-linear-gradient(0deg, rgba(105, 74, 43, 0.18) 0 2px, transparent 2px 8px),
+    linear-gradient(145deg, #e8c8a2, #c99a63);
+}
+
+.visual-thermal-pack .material-fallback {
+  border-radius: 14px 14px 8px 8px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.44), transparent 35%),
+    linear-gradient(180deg, #ffffff, #d4eef8);
+}
+
+.visual-drawer-bin .material-fallback {
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(205, 223, 230, 0.64)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.42), transparent);
+  backdrop-filter: blur(2px);
+}
+
+.visual-drawer-bin .material-fallback::before {
+  content: "";
+  position: absolute;
+  right: 12%;
+  bottom: 14%;
+  left: 12%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(66, 87, 96, 0.24);
+}
+
+.visual-tea-bag .material-fallback {
+  clip-path: polygon(14% 7%, 82% 0, 94% 88%, 26% 100%);
+  border-radius: 5px;
+  background:
+    linear-gradient(122deg, rgba(255, 255, 255, 0.88) 0 18%, transparent 18% 34%, rgba(255, 255, 255, 0.42) 34% 44%, transparent 44%),
+    linear-gradient(135deg, #f8fbfc, #aebdc5 42%, #fefefe 58%, #7e8d96);
+}
+
+.visual-tea-bag.variant-peach .material-fallback {
+  background:
+    linear-gradient(122deg, rgba(255, 255, 255, 0.86) 0 18%, transparent 18% 34%, rgba(255, 255, 255, 0.42) 34% 44%, transparent 44%),
+    linear-gradient(135deg, #fff8f3, #d5b19d 42%, #ffffff 58%, #8f9ba1);
+}
+
+.visual-tea-bag.variant-green .material-fallback,
+.visual-tea-bag.variant-jasmine .material-fallback {
+  background:
+    linear-gradient(122deg, rgba(255, 255, 255, 0.86) 0 18%, transparent 18% 34%, rgba(255, 255, 255, 0.42) 34% 44%, transparent 44%),
+    linear-gradient(135deg, #f6fbf7, #9db9aa 42%, #ffffff 58%, #7f8f8a);
+}
+
+.visual-tea-bag.variant-black .material-fallback {
+  background:
+    linear-gradient(122deg, rgba(255, 255, 255, 0.78) 0 18%, transparent 18% 34%, rgba(255, 255, 255, 0.35) 34% 44%, transparent 44%),
+    linear-gradient(135deg, #f9fbfc, #8d969c 42%, #eceff1 58%, #596068);
+}
+
+.visual-can .material-fallback,
+.visual-jar .material-fallback {
+  border-radius: 50% / 12%;
+  background:
+    linear-gradient(90deg, rgba(55, 75, 85, 0.16), transparent 20%, rgba(255, 255, 255, 0.68) 34%, transparent 56%, rgba(54, 72, 82, 0.18)),
+    linear-gradient(180deg, #eef8fb, #c9dde6 55%, #93aebc);
+}
+
+.visual-can .material-fallback::before,
+.visual-jar .material-fallback::before {
+  content: "";
+  position: absolute;
+  top: -1%;
+  right: 7%;
+  left: 7%;
+  height: 17%;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffffff, #bacbd3);
+  box-shadow: 0 3px 6px rgba(36, 50, 56, 0.16);
+}
+
+.visual-can .material-fallback::after,
+.visual-jar .material-fallback::after {
+  content: "";
+  position: absolute;
+  right: 10%;
+  bottom: 23%;
+  left: 10%;
+  height: 28%;
+  border-radius: 7px;
+  background: rgba(255, 246, 233, 0.76);
+  box-shadow: inset 0 0 0 1px rgba(117, 91, 66, 0.12);
+}
+
+.visual-can.variant-ruby .material-fallback::after {
+  background: rgba(255, 218, 214, 0.82);
+}
+
+.visual-can.variant-coconut .material-fallback::after {
+  background: rgba(235, 252, 244, 0.82);
+}
+
+.visual-can.variant-grape .material-fallback::after {
+  background: rgba(232, 222, 255, 0.82);
+}
+
+.visual-jar .material-fallback {
+  border-radius: 18px 18px 12px 12px;
+}
+
+.visual-jar.variant-crumb .material-fallback {
+  background:
+    linear-gradient(90deg, rgba(55, 75, 85, 0.16), transparent 20%, rgba(255, 255, 255, 0.68) 34%, transparent 56%, rgba(54, 72, 82, 0.18)),
+    radial-gradient(circle at 38% 62%, #bd8750 0 7%, transparent 8%),
+    radial-gradient(circle at 62% 58%, #d0a06d 0 7%, transparent 8%),
+    linear-gradient(180deg, #fbf5e8, #d6b07a);
+}
+
+.visual-jar.variant-sauce .material-fallback {
+  background:
+    linear-gradient(90deg, rgba(55, 75, 85, 0.16), transparent 20%, rgba(255, 255, 255, 0.6) 34%, transparent 56%, rgba(54, 72, 82, 0.18)),
+    linear-gradient(180deg, #ead0a7, #8b5b2e);
+}
+
+.visual-powder-bag .material-fallback,
+.visual-box-pack .material-fallback,
+.visual-packet-pack .material-fallback {
+  border-radius: 10px 10px 8px 8px;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.62), transparent 38%),
+    linear-gradient(145deg, #fff5dc, #d6a764);
+}
+
+.visual-powder-bag .material-fallback {
+  clip-path: polygon(12% 7%, 88% 7%, 96% 100%, 4% 100%);
+}
+
+.visual-powder-bag.variant-brown .material-fallback {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.55), transparent 38%),
+    linear-gradient(145deg, #ecd1aa, #7d4c26);
+}
+
+.visual-powder-bag.variant-gold .material-fallback {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.55), transparent 38%),
+    linear-gradient(145deg, #fff3b2, #d39a33);
+}
+
+.visual-powder-bag.variant-soy .material-fallback {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.55), transparent 38%),
+    linear-gradient(145deg, #f5e8bd, #c4a14b);
+}
+
+.visual-powder-bag.variant-matcha .material-fallback {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.55), transparent 38%),
+    linear-gradient(145deg, #dff1c6, #79a84d);
+}
+
+.visual-powder-bag .material-fallback::before,
+.visual-box-pack .material-fallback::before,
+.visual-packet-pack .material-fallback::before {
+  content: "";
+  position: absolute;
+  right: 14%;
+  bottom: 20%;
+  left: 14%;
+  height: 27%;
+  border-radius: 6px;
+  background: rgba(255, 250, 238, 0.7);
+  box-shadow: inset 0 0 0 1px rgba(135, 99, 59, 0.12);
+}
+
+.visual-box-pack .material-fallback {
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.48), transparent 38%),
+    linear-gradient(145deg, #f6ead7, #d9b485);
+}
+
+.visual-box-pack.variant-salt .material-fallback {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.5), transparent 38%),
+    linear-gradient(145deg, #f8fbff, #becbd2);
+}
+
+.visual-packet-pack .material-fallback {
+  border-radius: 14px;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.62), transparent 42%),
+    linear-gradient(145deg, #e7f7ff, #7fc2e5);
+}
+
+.visual-packet-pack.variant-white .material-fallback {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.7), transparent 42%),
+    linear-gradient(145deg, #ffffff, #d8e4e9);
+}
+
+.visual-packet-pack.variant-mint .material-fallback {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.64), transparent 42%),
+    linear-gradient(145deg, #e7fff3, #8bcfb2);
+}
+
+.visual-bottle .material-fallback,
+.visual-dairy .material-fallback {
+  width: 72%;
+  border-radius: 10px 10px 18px 18px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.56), transparent 36%, rgba(255, 255, 255, 0.18) 68%, transparent),
+    linear-gradient(180deg, #effbff 0 18%, #ffffff 18% 62%, #bfe8f6 62% 100%);
+}
+
+.visual-bottle .material-fallback::before,
+.visual-dairy .material-fallback::before {
+  content: "";
+  position: absolute;
+  top: 2%;
+  right: 28%;
+  left: 28%;
+  height: 12%;
+  border-radius: 5px 5px 3px 3px;
+  background: linear-gradient(180deg, #ffffff, #d9e4ea);
+}
+
+.visual-bottle.variant-mango .material-fallback {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.56), transparent 36%, rgba(255, 255, 255, 0.18) 68%, transparent),
+    linear-gradient(180deg, #ffffff 0 18%, #ffcf44 18% 62%, #ef9b23 62% 100%);
+}
+
+.visual-bottle.variant-coconut .material-fallback {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.56), transparent 36%, rgba(255, 255, 255, 0.18) 68%, transparent),
+    linear-gradient(180deg, #ffffff 0 18%, #fff 18% 62%, #e9eee8 62% 100%);
+}
+
+.visual-bottle.variant-grape .material-fallback {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.56), transparent 36%, rgba(255, 255, 255, 0.18) 68%, transparent),
+    linear-gradient(180deg, #ffffff 0 18%, #8b253b 18% 62%, #64172a 62% 100%);
+}
+
+.visual-bottle.variant-green-grape .material-fallback {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.56), transparent 36%, rgba(255, 255, 255, 0.18) 68%, transparent),
+    linear-gradient(180deg, #ffffff 0 18%, #a8b61d 18% 62%, #728615 62% 100%);
+}
+
+.visual-bottle.variant-mango .material-fallback::after,
+.visual-bottle.variant-coconut .material-fallback::after,
+.visual-bottle.variant-grape .material-fallback::after,
+.visual-bottle.variant-green-grape .material-fallback::after {
+  content: "";
+  position: absolute;
+  right: 11%;
+  bottom: 30%;
+  left: 11%;
+  height: 28%;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: inset 0 0 0 1px rgba(94, 76, 57, 0.1);
+}
+
+.visual-dairy.variant-cheese .material-fallback {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.56), transparent 36%, rgba(255, 255, 255, 0.18) 68%, transparent),
+    linear-gradient(180deg, #fff8d6 0 18%, #fff3ad 18% 62%, #d9b650 62% 100%);
+}
+
+.visual-dairy.variant-cream .material-fallback {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.56), transparent 36%, rgba(255, 255, 255, 0.18) 68%, transparent),
+    linear-gradient(180deg, #fff 0 18%, #fffaf0 18% 62%, #ead8bd 62% 100%);
+}
+
+.visual-fruit .material-fallback {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 36% 36%, rgba(255, 255, 255, 0.75), transparent 22%),
+    radial-gradient(circle at 60% 42%, #9bd35b 0 16%, transparent 17%),
+    radial-gradient(circle at 38% 62%, #75bd42 0 15%, transparent 16%),
+    radial-gradient(circle at 56% 67%, #b5e571 0 15%, transparent 16%),
+    #eaf7d5;
+}
+
+.visual-frozen-box .material-fallback {
+  border-radius: 12px;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.6), transparent 38%),
+    linear-gradient(145deg, #eef8ff, #cfeaf6 45%, #ffffff);
+}
+
+.visual-frozen-box.variant-brown .material-fallback {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.58), transparent 38%),
+    radial-gradient(circle at 24% 38%, #4a2618 0 5%, transparent 6%),
+    radial-gradient(circle at 42% 34%, #6b3c25 0 5%, transparent 6%),
+    radial-gradient(circle at 61% 39%, #4f2a1c 0 5%, transparent 6%),
+    radial-gradient(circle at 76% 50%, #6b3c25 0 5%, transparent 6%),
+    radial-gradient(circle at 31% 61%, #5a3220 0 6%, transparent 7%),
+    radial-gradient(circle at 51% 61%, #3d2118 0 5%, transparent 6%),
+    radial-gradient(circle at 68% 69%, #6b3c25 0 6%, transparent 7%),
+    radial-gradient(circle at 39% 78%, #4a2618 0 5%, transparent 6%),
+    radial-gradient(circle at 59% 82%, #5a3220 0 5%, transparent 6%),
+    linear-gradient(145deg, #fff3df, #c98e52);
+}
+
+.visual-frozen-box.variant-purple .material-fallback {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.58), transparent 38%),
+    linear-gradient(90deg, transparent 19%, #9e78ca 19% 30%, transparent 30% 47%, #c4a9e2 47% 58%, transparent 58%),
+    linear-gradient(0deg, transparent 17%, #b494d9 17% 28%, transparent 28% 52%, #8e6cbc 52% 63%, transparent 63%),
+    linear-gradient(145deg, #f3eeff, #bca2dc 45%, #fff);
+}
+
+.visual-frozen-box.variant-taro .material-fallback {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.58), transparent 38%),
+    linear-gradient(145deg, #f3eeff, #bca2dc 45%, #fff);
+}
+
+.visual-frozen-box.variant-mango-cube .material-fallback {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.58), transparent 38%),
+    linear-gradient(90deg, transparent 17%, #ffb82f 17% 30%, transparent 30% 48%, #ffd067 48% 61%, transparent 61%),
+    linear-gradient(0deg, transparent 16%, #f6a623 16% 29%, transparent 29% 50%, #ffc34d 50% 63%, transparent 63%),
+    linear-gradient(145deg, #fff4cf, #f0a22c 48%, #fff);
+}
+
+@media (max-height: 430px) {
+  .material-label {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+}
